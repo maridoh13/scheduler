@@ -1,5 +1,4 @@
-
-export function getAppointmentsForDay(state, day) {
+export default function getAppointmentsForDay(state, day) {
   const apptsForDay = []
   state.days.forEach(stateDay => {
     if (stateDay.name === day) {
@@ -19,7 +18,7 @@ export function getInterviewersForDay(state, day) {
     if (stateDay.name === day) {
       stateDay.interviewers.forEach(interviewerId => {
         interviewersForDay.push(state.interviewers[interviewerId])
-        
+
       })
     }
   })

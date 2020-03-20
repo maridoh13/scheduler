@@ -4,9 +4,9 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment";
-import getAppointmentsForDay from "../helpers/selectors"
-import getInterview from "../helpers/selectors"
-import useVisualMode from "../hooks/useVisualMode"
+import getAppointmentsForDay, { getInterviewersForDay, getInterview } from "../helpers/selectors"
+
+
 
 export default function Application(props) {
   const [state, setState] = useState({
@@ -31,14 +31,18 @@ export default function Application(props) {
         setState(prev => ({
           ...prev,
           days,
-          appointments: getAppointmentsForDay({ days, appointments }, day)
+          appointments: getAppointmentsForDay({ days, appointments }, day),
+          interviewers: getInterviewersForDay({ days, appointments, interviewers }, day)
         }))
       })} ,[day]);
-
-  const schedule = appointments.map((a) => { 
-    const interview = getInterview(state, a.interview);
+      
+      
+const schedule = appointments.map((a) => { 
+  // const interviewers = getInterviewersForDay(state, day)
+  console.log("Interviewers:", getInterviewersForDay(state, day))
+  const interview = getInterview(state, a.interview);
     return (
-    <Appointment key={a.id} {...a} />)
+    <Appointment key={a.id} {...a} interviewers={state.interviewers} />)
   });
 
   return (
