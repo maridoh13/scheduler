@@ -6,6 +6,7 @@ import DayList from "./DayList";
 import Appointment from "components/Appointment";
 import getAppointmentsForDay from "../helpers/selectors"
 import getInterview from "../helpers/selectors"
+import useVisualMode from "../hooks/useVisualMode"
 
 export default function Application(props) {
   const [state, setState] = useState({
@@ -27,7 +28,6 @@ export default function Application(props) {
         const appointments = all[1].data
         const interviewers = all[2].data
 
-        console.log('interviewers', interviewers)
         setState(prev => ({
           ...prev,
           days,
