@@ -12,9 +12,10 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: []
+    appointments: {},
+    interviewers: {} /////
   })
-  const { day, days, appointments, interviewers } = state
+  
   const setDay = day => setState({ ...state, day });
 
   useEffect(() => {
@@ -31,18 +32,37 @@ export default function Application(props) {
         setState(prev => ({
           ...prev,
           days,
-          appointments: getAppointmentsForDay({ days, appointments }, day),
-          interviewers: getInterviewersForDay({ days, appointments, interviewers }, day)
+          appointments,
+          interviewers
         }))
-      })} ,[day]);
+      })} ,[state.day]);
       
-      
-const schedule = appointments.map((a) => { 
-  // const interviewers = getInterviewersForDay(state, day)
-  console.log("Interviewers:", getInterviewersForDay(state, day))
-  const interview = getInterview(state, a.interview);
-    return (
-    <Appointment key={a.id} {...a} interviewers={state.interviewers} />)
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    }; 
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }; 
+  };
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+  };
+
+  const interviewers = getInterviewersForDay(state, state.day)
+  const appointments = getAppointmentsForDay(state, state.day)
+
+  const schedule = appointments.map((a) => { 
+    // console.log("Interviewers:", getInterviewersForDay(state, day))
+    const interview = getInterview(state, a.interview);
+      return (
+      <Appointment key={a.id} {...a} id={props.bookInterview}  interviewers={interviewers} interview={interview} />)
   });
 
   return (
