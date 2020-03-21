@@ -44,8 +44,15 @@ export default function Application(props) {
       [id]: appointment
     }; 
     setState({...state, appointments})
-    // console.log("id", id)
-    // console.log('interview', interview)
+
+    axios.put(`/api/appointments/${id}`, {interview})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
   };
      
   const interviewers = getInterviewersForDay(state, state.day)
