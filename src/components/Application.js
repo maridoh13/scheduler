@@ -54,6 +54,27 @@ export default function Application(props) {
       });
     
   };
+
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    }; 
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }; 
+
+    axios.delete(`/api/appointments/${id}`)
+      .then((response) => {
+        setState({...state, appointments})
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
+  };
+
      
   const interviewers = getInterviewersForDay(state, state.day)
   const appointments = getAppointmentsForDay(state, state.day)
@@ -64,9 +85,10 @@ export default function Application(props) {
       <Appointment 
         key={a.id} 
         {...a} 
-        bookInterview={bookInterview}  
         interviewers={interviewers} 
         interview={interview} 
+        bookInterview={bookInterview}  
+        cancelInterview={cancelInterview}
       />)
   });
 
