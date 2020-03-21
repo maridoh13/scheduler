@@ -29,13 +29,14 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    props.bookInterview(props.id, interview);
-    transition(SHOW);  
+    props.bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(error => console.log(error));
   }; 
 
   function deleteInterview() {
     transition(DELETING);
-    Promise.resolve(props.cancelInterview(props.id))
+    props.cancelInterview(props.id)
       .then(() => transition(EMPTY))
       .catch(error => console.log(error));
   }; 
