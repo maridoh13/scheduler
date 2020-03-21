@@ -39,8 +39,7 @@ export default function Appointment(props) {
         console.log('do I get heeeeeeeeeeere?', error)
         transition(ERROR_SAVE, true)
       })
- 
-  }; 
+   }; 
 
   function deleteInterview() {
     transition(DELETING, true);
