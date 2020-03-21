@@ -33,3 +33,12 @@ export function getInterview(state, interview) {
   return { ...interview, interviewer }
 }
 
+export function getSpotsForDay(state, dayName) {
+  const appointments = getAppointmentsForDay(state, dayName);
+  return appointments.reduce((prev, curr) => {
+    if (curr.interview !== null) {
+      return prev - 1;
+    }
+    return prev;
+  }, appointments.length);
+};

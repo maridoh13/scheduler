@@ -3,7 +3,7 @@ import useApplicationData from "hooks/useApplicationData"
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment";
-import getAppointmentsForDay, { getInterviewersForDay, getInterview } from "../helpers/selectors"
+import getAppointmentsForDay, { getInterviewersForDay, getInterview, getSpotsForDay } from "../helpers/selectors"
 
 export default function Application(props) {
 
@@ -11,6 +11,7 @@ export default function Application(props) {
       
   const interviewers = getInterviewersForDay(state, state.day)
   const appointments = getAppointmentsForDay(state, state.day)
+  const remainingSpots = getSpotsForDay(state, state.day)
 
   const schedule = appointments.map((a) => { 
     const interview = getInterview(state, a.interview);
@@ -18,6 +19,7 @@ export default function Application(props) {
       <Appointment 
         key={a.id} 
         {...a} 
+        spots={remainingSpots}
         interviewers={interviewers} 
         interview={interview} 
         bookInterview={bookInterview}  
@@ -39,6 +41,7 @@ export default function Application(props) {
             days={ state.days }
             day={ state.day }
             setDay={ setDay }
+            spots={remainingSpots}
           />
         </nav>
         <img

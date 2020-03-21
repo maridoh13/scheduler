@@ -9,7 +9,7 @@ export default function useApplicationData() {
     interviewers: {}
   })
   
-  const setDay = day => setState({ ...state, day });
+  const setDay = (day) => setState({ ...state, day });
 
   useEffect(() => {
     Promise.all([
@@ -28,7 +28,8 @@ export default function useApplicationData() {
           appointments,
           interviewers
         }))
-      })} ,[state.day]);
+
+      })}, [state.day]);
       
   function bookInterview(id, interview) {
     const appointment = {

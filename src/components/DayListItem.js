@@ -9,6 +9,8 @@ export default function DayListItem(props) {
     "day-list__item--full": props.spots === 0
   });
 
+  console.log('props in DayListItem', props.spots)
+
   function formatSpots(props) {
     let { spots } = props
     if (spots === 0) {
