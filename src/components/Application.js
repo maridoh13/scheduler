@@ -45,13 +45,13 @@ export default function Application(props) {
     }; 
     
     return (
-    axios.put(`/api/appointments/${id}`, {interview})
-      .then(() => {
-        setState({...state, appointments})
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+      axios.put(`/api/appointments/${id}`, {interview})
+        .then(() => {
+          setState({...state, appointments})
+        })
+        .catch((error) => {
+          return Promise.reject(error);
+        })
     )
     
   };
@@ -67,13 +67,13 @@ export default function Application(props) {
     }; 
 
     return (
-    axios.delete(`/api/appointments/${id}`)
-      .then((response) => {
-        setState({...state, appointments})
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+      axios.delete(`/api/appointments/${id}`)
+        .then((response) => {
+          setState({...state, appointments})
+        })
+        .catch((error) => {
+          return Promise.reject(error);
+        })
     )
   };
 
