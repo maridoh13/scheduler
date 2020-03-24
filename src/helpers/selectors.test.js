@@ -46,7 +46,7 @@ const state = {
 
 test("getAppointmentsForDay returns an array", () => {
   const result = getAppointmentsForDay(state, "Monday");
-  expect(Array.isArray(result)).toBe(true);
+  expect(Array.isArray(result)).toBe(false);
 });
 
 test("getAppointmentsForDay returns an array with a length matching the number of appointments for that day", () => {
