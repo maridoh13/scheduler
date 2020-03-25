@@ -32,6 +32,7 @@ export default function useApplicationData() {
       })}, [state.day]);
       
   function bookInterview(id, interview) {
+    // console.log(state.days)
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -40,11 +41,27 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     }; 
+
+    const activeDay = state.days.find((day) => {
+      return day.name = state.day
+    })
+
+    const updatedDay = {
+      ...activeDay, 
+      spots: activeDay.spots - 1
+    }
+
+    const updatedDays = state.days.map((day) => {
+      if (day.name === updatedDay.name) {
+        return updatedDay
+      }
+      return day
+    })
     
     return (
       axios.put(`/api/appointments/${id}`, {interview})
         .then(() => {
-          setState({...state, appointments})
+          setState({...state, appointments, days: updatedDays})
         })
         .catch((error) => {
           return Promise.reject(error);
@@ -63,10 +80,26 @@ export default function useApplicationData() {
       [id]: appointment
     }; 
 
+    const activeDay = state.days.find((day) => {
+      return day.name = state.day
+    })
+
+    const updatedDay = {
+      ...activeDay, 
+      spots: activeDay.spots + 1
+    }
+
+    const updatedDays = state.days.map((day) => {
+      if (day.name === updatedDay.name) {
+        return updatedDay
+      }
+      return day
+    })
+
     return (
       axios.delete(`/api/appointments/${id}`)
         .then((response) => {
-          setState({...state, appointments})
+          setState({...state, appointments, days: updatedDays})
         })
         .catch((error) => {
           return Promise.reject(error);
