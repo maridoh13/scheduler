@@ -14,8 +14,10 @@ To run both servers please use the `npm start` command.
 
 
 ## Screenshots
-
+Home page
 !["Home page"](https://github.com/maridoh13/scheduler/blob/master/public/images/homepage.png)
+
+Form for creating an appointment
 !["Creating an appointment"](https://github.com/maridoh13/scheduler/blob/master/public/images/createappt.png)
 
 @maridoh13 - a @lighthouselabs student
