@@ -10,8 +10,7 @@ export default function InterviewerList(props) {
     interviewer: PropTypes.number,
     setInterviewer: PropTypes.func.isRequired
   };
-  
-
+ 
   const interviewers = props.interviewers.map(interviewer => {
     return (
       <InterviewerListItem
@@ -23,9 +22,7 @@ export default function InterviewerList(props) {
       />
     )
   });
-  
-  
-
+ 
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
@@ -33,6 +30,4 @@ export default function InterviewerList(props) {
     </section>
   )
 
-}
-
-
+};

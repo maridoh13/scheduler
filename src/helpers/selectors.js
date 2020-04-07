@@ -1,5 +1,5 @@
 export default function getAppointmentsForDay(state, day) {
-  const apptsForDay = []
+  const apptsForDay = [];
   state.days.forEach(stateDay => {
     if (stateDay.name === day) {
       stateDay.appointments.forEach(apptID => {
@@ -10,28 +10,27 @@ export default function getAppointmentsForDay(state, day) {
 
   return apptsForDay;
 
-}
+};
 
 export function getInterviewersForDay(state, day) {
-  const interviewersForDay = []
+  const interviewersForDay = [];
   state.days.forEach(stateDay => {
     if (stateDay.name === day) {
       stateDay.interviewers.forEach(interviewerId => {
         interviewersForDay.push(state.interviewers[interviewerId])
-
       })
     }
   })
   return interviewersForDay
-}
+};
 
 export function getInterview(state, interview) {
   if (!interview) {
     return null
   }
-  let interviewer = state.interviewers[interview.interviewer]
+  let interviewer = state.interviewers[interview.interviewer];
   return { ...interview, interviewer }
-}
+};
 
 export function getSpotsForDay(state, dayName) {
   const appointments = getAppointmentsForDay(state, dayName);

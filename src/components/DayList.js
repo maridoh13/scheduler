@@ -13,7 +13,8 @@ export default function DayList(props) {
       selected={item.name === day}
       setDay={setDay}
     />
-  })
+  });
+  
   return (
   <ul>
     { dayList }  

@@ -8,7 +8,7 @@ export default function useApplicationData() {
     days: [],
     appointments: {},
     interviewers: {}
-  })
+  });
 
   const setDay = (day) => setState({ ...state, day });
 
@@ -69,7 +69,7 @@ export default function useApplicationData() {
 
     const activeDay = state.days.find((day) => {
       return day.name === state.day
-    })
+    });
 
     const daysAppts = getAppointmentsForDay(state, activeDay.name);
     const numSpots = spotsLeft(daysAppts);
@@ -78,14 +78,14 @@ export default function useApplicationData() {
     const updatedDay = {
       ...activeDay,
      spots: numSpots
-    }
+    };
 
     const updatedDays = state.days.map((day) => {
       if (day.name === updatedDay.name) {
         return updatedDay
       }
       return day
-    })
+    });
 
     return (
       axios.put(`/api/appointments/${id}`, {interview})
@@ -111,19 +111,19 @@ export default function useApplicationData() {
 
     const activeDay = state.days.find((day) => {
       return day.name === state.day
-    })
+    });
 
     const updatedDay = {
       ...activeDay,
       spots: activeDay.spots + 1
-    }
+    };
 
     const updatedDays = state.days.map((day) => {
       if (day.name === updatedDay.name) {
         return updatedDay
       }
       return day
-    })
+    });
 
     return (
       axios.delete(`/api/appointments/${id}`)
@@ -138,8 +138,4 @@ export default function useApplicationData() {
 
 
   return { state, setDay, bookInterview, cancelInterview }
-}
-
-
-
-
+};
