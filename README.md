@@ -12,6 +12,15 @@ https://github.com/maridoh13/scheduler-api
 
 To run both servers please use the `npm start` command.
 
+## Dependencies Used
+
+Axios
+Classnames
+Normalize.css
+React
+React-DOM
+React-scripts
+
 
 ## Screenshots
 Home page
