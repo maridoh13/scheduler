@@ -3,14 +3,11 @@
 This is a single-page app built with React, and tested with Jest, Cypress and Storybook. 
 It is a mock of an interview scheduler.
 
-## Setup
+## Visit the app
 
-Install dependencies with `npm install`.
+https://relaxed-torvalds-f1242c.netlify.app/
 
-The following API needs to be installed as well to run the Database.
-https://github.com/maridoh13/scheduler-api
 
-To run both servers please use the `npm start` command.
 
 ## Dependencies Used
 
